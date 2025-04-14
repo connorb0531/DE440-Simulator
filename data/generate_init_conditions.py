@@ -64,4 +64,6 @@ def main():
 
     print("Initial planetary state saved to JSON files in /data/body/")
 
-main()
+
+if __name__ == "__main__":
+    main()
