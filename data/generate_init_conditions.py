@@ -11,6 +11,7 @@ LSK_PATH = os.path.join(KERNEL_DIR, "naif0012.tls")
 OUTPUT_DIR = os.path.join(BASE_DIR, "body")
 EPOCH_UTC = "2025-01-01T00:00:00"
 BODIES = {
+    "Sun": "SUN",
     "Mercury": "MERCURY BARYCENTER",
     "Venus": "VENUS BARYCENTER",
     "Earth": "EARTH",
@@ -23,6 +24,7 @@ BODIES = {
 
 # Masses in kg from JPL
 MASSES_KG = {
+    "Sun": 1.9885e30,
     "Mercury": 3.3011e23,
     "Venus": 4.8675e24,
     "Earth": 5.9724e24,

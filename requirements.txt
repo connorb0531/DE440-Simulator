@@ -3,3 +3,4 @@ spiceypy
 matplotlib
 jupyter
 scipy
+ipympl

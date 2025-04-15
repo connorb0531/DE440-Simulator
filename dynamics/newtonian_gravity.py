@@ -9,7 +9,7 @@ def compute_acceleration(r_i, r_j, M_j):
     if magnitude == 0: # Avoid division by 0 (unlikely case)
         return np.zeros(3)
 
-    return constants.G * M_j * diff_vector / magnitude # Acceleration resultant
+    return constants.G * M_j * diff_vector / magnitude ** 3 # Acceleration resultant
 
 # Returns derivative of system's state
 def n_body_ode(t, bodies):
