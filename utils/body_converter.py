@@ -1,7 +1,6 @@
 import numpy as np
 from dynamics.body import Body
 
-
 def bodies_to_state_vector(bodies):
     positions = np.array([body.position for body in bodies])
     velocities = np.array([body.velocity for body in bodies])
@@ -16,7 +15,7 @@ def state_vector_to_bodies(y, masses):
         position = y[i, :3]
         velocity = y[i, 3:]
         body = Body(
-            name=f"Body_{i}",  # You can replace this with real names if you track them elsewhere
+            name=f"Body_{i}",
             mass=masses[i],
             position=position,
             velocity=velocity
