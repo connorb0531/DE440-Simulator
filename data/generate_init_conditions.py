@@ -3,9 +3,10 @@ import numpy as np
 import json
 import os
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.abspath(__file__)) # base directory
 KERNEL_DIR = os.path.join(BASE_DIR, "..", "kernels")  # go up to root then into kernels
 
+# /kernels paths
 BSP_PATH = os.path.join(KERNEL_DIR, "de440.bsp")
 LSK_PATH = os.path.join(KERNEL_DIR, "naif0012.tls")
 OUTPUT_DIR = os.path.join(BASE_DIR, "body")
@@ -35,6 +36,7 @@ MASSES_KG = {
     "Neptune": 1.0241e26
 }
 
+# Convert kilometer to meter
 def km_to_m(arr):
     return (np.array(arr) * 1e3).tolist()
 
