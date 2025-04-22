@@ -1,7 +1,9 @@
 import numpy as np
 from data import constants
+from numba import njit
 
 # Compute Newtonian gravitational acceleration
+@njit()
 def compute_acceleration(r_i, r_j, M_j):
     diff_vector = r_j - r_i # Displacement vector
     magnitude = np.linalg.norm(diff_vector) # Magnitude of displacement vector
@@ -12,15 +14,16 @@ def compute_acceleration(r_i, r_j, M_j):
     return constants.G * M_j * diff_vector / magnitude ** 3 # Acceleration resultant
 
 # Returns time derivative of system's state
-def n_body_ode(t, bodies):
+@njit()
+def n_body_ode(y, masses):
     # System body count
-    N = len(bodies)
+    N = len(masses)
 
-    # Extract current state into NumPy arrays
-    positions = np.stack([body.position for body in bodies])    # shape: (N, 3)
-    velocities = np.stack([body.velocity for body in bodies])   # shape: (N, 3)
-    masses = np.stack([body.mass for body in bodies])           # shape: (N,)
-    accelerations = np.zeros_like(positions)                    # shape: (N, 3)
+    # Extract current bodies' state into NumPy arrays
+    y = y.reshape((N, 6))
+    positions = y[:, :3]
+    velocities = y[:, 3:]
+    accelerations = np.zeros_like(positions)
 
     # Compute net acceleration on each body from all others
     for i in range(N):
