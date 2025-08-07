@@ -1,0 +1,47 @@
+DE440_Simulator/
+│
+├── README.md
+├── requirements.txt
+├── main.py                        # Entry point to run simulations
+│
+├── data/                          # Ephemeris data, constants, and initial conditions
+│   ├── masses.json
+│   ├── positions.json
+│   ├── velocities.json
+│   ├── constants.py               # G, AU, c, etc.
+│   └── time_conversion_tables/
+│       └── ...
+│
+├── utils/                         # Utility functions
+│   ├── frame_transforms.py        # Barycentric transformations, rotation matrices
+│   ├── time_utils.py              # UTC ↔ TAI ↔ TT ↔ TDB
+│   └── plot_tools.py              # 2D/3D plotting helpers
+│
+├── integrators/                  # Numerical integrators
+│   ├── runge_kutta.py
+│   ├── velocity_verlet.py
+│   └── symplectic.py
+│
+├── dynamics/                      # Physics modules (grows with complexity)
+│   ├── newtonian_gravity.py       # Step 1
+│   ├── post_newtonian.py          # Step 3
+│   ├── solar_radiation.py         # Step 4
+│   ├── earth_tides.py             # Step 5
+│   ├── oblateness.py              # Step 6 (J2-J5)
+│   ├── frame_dragging.py          # Step 7 (Lense-Thirring)
+│   └── small_body_perturbations.py # Step 8 (KBOs, asteroids)
+│
+├── moon_dynamics/                # Optional, for Step 9
+│   ├── rotation_model.py
+│   ├── fluid_core.py
+│   └── torque_model.py
+│
+├── tests/                         # Unit tests for each module
+│   ├── test_newtonian.py
+│   ├── test_post_newtonian.py
+│   └── ...
+│
+└── notebooks/                     # Jupyter notebooks for experiments and visualizations
+    ├── validate_newtonian.ipynb
+    ├── post_newtonian_demo.ipynb
+    └── ephemeris_compare.ipynb
