@@ -1,6 +1,7 @@
 import json
 from dynamics.body import Body
 
+# Loads body data from .json file located in /data/body
 def load_bodies_from_json(pos_path, vel_path, mass_path):
     with open(pos_path) as f:
         positions = json.load(f)

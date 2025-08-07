@@ -1,10 +1,18 @@
-import data.generate_init_conditions
-from utils.body_data_loader import load_bodies_from_json
+from simulation.runner import run_simulation
+import time
 
-bodies = load_bodies_from_json(
-    "data/body/positions.json",
-    "data/body/velocities.json",
-    "data/body/masses.json"
-)
+def main():
+    T = 1 * 365.25 * 24 * 3600  # 1 year
 
-print(bodies)
+    start_time = time.perf_counter()  # Record start time
+
+    bodies, solution = run_simulation(T, steps=100, file='py')
+
+    # Execution process time
+    end_time = time.perf_counter()
+    execution_time = end_time - start_time
+    print("Integration complete!")
+    print(f"Execution time: {execution_time:.2f} seconds")
+
+if __name__ == "__main__":
+    main()
