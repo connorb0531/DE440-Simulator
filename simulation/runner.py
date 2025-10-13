@@ -3,7 +3,7 @@ from integrators.scipy_ivp_integrator import integrate_system
 from utils.body_converter import bodies_to_state_vector
 from utils.body_data_loader import load_bodies_from_json
 
-def run_simulation(T, steps=100, file='ipynb'):
+def run_simulation(T, steps=100, file='ipynb', use_vectorized=False):
     positions_path = 'data/body/positions.json'
     velocities_path = 'data/body/velocities.json'
     masses_path = 'data/body/masses.json'
@@ -23,8 +23,8 @@ def run_simulation(T, steps=100, file='ipynb'):
     masses = np.array([body.mass for body in bodies])
     t_eval = np.linspace(0, T, steps)
 
-    # Integrate
-    solution = integrate_system(y0=y0, t_span=(0, T), masses=masses, t_eval=t_eval)
+    # Integrate using chosen method
+    solution = integrate_system(y0=y0, t_span=(0, T), masses=masses, t_eval=t_eval, use_vectorized=use_vectorized)
 
     # Attach position history
     state_trajectories = solution.y.T
